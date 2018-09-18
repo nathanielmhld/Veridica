@@ -70,8 +70,3 @@ After a regex search, a new excel file will have been created in the output fold
 A google search will update both the out.csv and, if either email or company search are checked, it will also execute a regex search.
 *Keyword List*
 The keyword list will be updated everytime the program is started up, and can be found in the output folder
-
-
-**Google Account Information**
-idcwebcrawler@gmail.com
-Password: webcrawler
