@@ -1,0 +1,77 @@
+***INSTALLATION***
+To run our software, some extra libraries are required. Here are the libraries, and how to install them.
+First, it will be much easier to use a python package manager,
+we recommend "pip"
+Visit https://pip.pypa.io/en/stable/installing/ to install pip, then
+install the following packages.
+
+Installing packages:
+In terminal run:
+    pip3 install --upgrade pip
+	pip3 install -U textblob
+	python3 -m textblob.download_corpora
+
+	pip3 install bs4
+	pip3 install lxml
+	pip3 install pickle
+	pip3 install mstranslator
+	pip3 install pprint
+	pip3 install tldextract
+	pip3 install bs4
+	pip3 install lxml
+	pip3 install unidecode
+	pip3 install openpyxl
+	pip3 install pandas
+	pip3 install selenium
+	pip3 install xlsxwriter
+	pip3 install --upgrade google-api-python-client
+
+
+***USING THE SOFTWARE***
+**TO RUN**
+In terminal, navigate to the package folder and run:
+python main.py
+**INPUT**
+*Editing the out.csv document*
+ALWAYS close out.csv before running the program
+ALLOWED ACTIONS IN THE CSV
+Delete a company
+To delete a company, delete ENTIRE row.
+Edit functional/secondary market
+MUST replace functional or secondary market; CANNOT LEAVE BLANK.
+Replaced functional or secondary market MUST be EXACTLY the same as a pre-existing functional or secondary market
+Add a company
+New companies MUST have at least a name and a website, and MAY include a secondary or functional market. Any additional provided information will be ignored.
+If you add a duplicate of a company that already exists, this will cause problems
+*Use of the GUI*
+“Local Regex Search” searches for keywords using local data. Can use comma separated phrase and words.
+Ex. if “Acquisition, Software as a Service” is typed into the search bar, the regex search will look for the exact phrases “Acquisition” and “Software as a Service” in the websites
+“Email Search” searches for emails within each company’s website.
+“Company Search” searches for references to the name of any other company that is in the database the software has stored. For example, if one were to execute company search while using web search, all incoming companies would be checked for references to other companies already in the database and that information would be reported in a date/time.xlsx folder.
+“Web Search” searches for new companies using the key term in the text box. Input search terms as you would as if you’re using Google.
+The Google Search API limits the number of searches done per day, to be precise, 1000 websites per day. Our software asks google for 100 websites at a time.
+This program is set to perform 10 “search calls” with each run of the program which means you may only run the web search on this program 10 TIMES PER DAY
+When “Web Search” is unticked, you are using LOCAL DATA.
+“Refresh Database” takes existing companies and recollects all the information again while keeping the secondary and functional markets categories intact. CAUTION: MAY TAKE A LONG TIME (We’re talking days)
+When using “Web Search” with “Email Search” and “Company Search”, ONLY emails of new companies will be extracted. “Company Search” will search for companies that comes up in each company’s website for both the old and new companies.
+Expected Runtime for each operation
+Open program: If many new companies have been added into the out.csv, this might take a long time, on the order of 10-15 minutes. Usually, though, this should only take seconds.
+Regex search: This should take seconds
+Web Search: Shouldn’t take more than 5 minutes (this search gathers 100 links and checks them)
+Refresh Database: This may take many days to run. It is necessary to do very rarely when information becomes outdated
+**OUTPUT**
+Within the output folder in the project, there are 3 items
+out.csv: This is the main output of the program. It is editable as described above. It is meant to contain all metadata and is modeled after the Cloudshare document. It contains the name, website, language, pertinent dates, secondary market, and functional market for all companies, old and new
+keywords.txt: This contains all the categories known to the software’s sorting algorithm, and lets the user know the top 10 keywords associated with each category. This information can be used to BETTER INFORM FUTURE QUERIES.
+Folders named with dates: After a search is performed, a folder is produced with the current date and in that folder, an excel document will be created, titled with the time. These documents will have columns for all companies searched. The entries beneath the columns are the search keywords that appear somewhere on that company’s website. The keywords are themselves links, that direct the user to the page on the company’s website that contains the keyword.
+*Regex Results*
+After a regex search, a new excel file will have been created in the output folder with the path “date”/”time”.xlsx. That file contains the results of the search.
+*Web Search Results*
+A google search will update both the out.csv and, if either email or company search are checked, it will also execute a regex search.
+*Keyword List*
+The keyword list will be updated everytime the program is started up, and can be found in the output folder
+
+
+**Google Account Information**
+idcwebcrawler@gmail.com
+Password: webcrawler
